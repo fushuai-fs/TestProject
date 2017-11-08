@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +18,7 @@ namespace ConsoleTest
             test = new tests("jack2", 2000); test.AddTime = DateTime.Now; list.Add(test);
             test = new tests("jack3", 2000); test.AddTime = DateTime.Now; list.Add(test);
             //  MongoDBTest.MongoDBHelper.InserOne("hotel", "bar", test);
-             DataAccessor.MongoDBHelper.InsertMany("hotel", "bar", list);
+            DataAccessor.MongoHelper.InsertMany("hotel", "bar", list);
             // FilterDefinition<tests> filter = Builders<tests>.Filter.Eq("age", 1000);
             // UpdateDefinition<tests> update = Builders<tests>.Update.Set("name", "testupdate1").CurrentDate("ModifyTime");
             // MongoDBHelper.UpdateMany("hotel", "bar", filter, update);
@@ -24,6 +27,8 @@ namespace ConsoleTest
             Console.ReadKey();
         }
     }
+
+
     public class tests
     {
         public MongoDB.Bson.ObjectId id { get; set; }
