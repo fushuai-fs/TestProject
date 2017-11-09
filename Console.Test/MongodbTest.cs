@@ -32,15 +32,17 @@ namespace ConsoleTest
         public MongoDB.Bson.ObjectId id { get; set; }
         public DateTime AddTime { get; set; }
         public DateTime ModifyTime { get; set; }
+        public long Id { get; set; }
 
-        public testModel(string name, int age)
+        public testModel() { }
+        public testModel(string name, long age)
         {
             this.name = name;
             this.age = age;
         }
 
         public string name { get; set; }
-        public int age { get; set; }
+        public long age { get; set; } 
         public bool sex { get; set; }
     }
 }
