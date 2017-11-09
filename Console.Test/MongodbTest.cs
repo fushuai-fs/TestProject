@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +12,14 @@ namespace ConsoleTest
     {
         public static void test()
         {
-            List<testModel> list = new List<testModel>();
-            testModel test = new testModel("jack1", 1100); test.AddTime = DateTime.Now; list.Add(test);
-            test = new testModel("jack2", 2000); test.AddTime = DateTime.Now; list.Add(test);
-            test = new testModel("jack3", 2000); test.AddTime = DateTime.Now; list.Add(test);
-            //  MongoDBTest.MongoDBHelper.InserOne("hotel", "bar", test);
-            DataAccessor.MongoDBHelper.InsertMany("hotel", "bar", list);
+            var filter = new BsonDocument();
+            List<testModel> list = DataAccessor.MongoDBHelper.FindData<testModel>("hotel","bar",1,2, filter);
+            
+            //List<testModel> list = new List<testModel>();
+            //testModel test = new testModel("jack1", 1100); test.AddTime = DateTime.Now; list.Add(test);
+            //test = new testModel("jack2", 2000); test.AddTime = DateTime.Now; list.Add(test);
+            //test = new testModel("jack3", 2000); test.AddTime = DateTime.Now; list.Add(test); 
+            // DataAccessor.MongoDBHelper.InsertMany("hotel", "bar", list);
             // FilterDefinition<testModel> filter = Builders<testModel>.Filter.Eq("age", 1000);
             // UpdateDefinition<testModel> update = Builders<testModel>.Update.Set("name", "testupdate1").CurrentDate("ModifyTime");
             // MongoDBHelper.UpdateMany("hotel", "bar", filter, update);
@@ -23,7 +27,7 @@ namespace ConsoleTest
         }
     }
 
-      public class testModel
+    public class testModel
     {
         public MongoDB.Bson.ObjectId id { get; set; }
         public DateTime AddTime { get; set; }

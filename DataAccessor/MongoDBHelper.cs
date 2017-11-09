@@ -43,28 +43,25 @@ namespace DataAccessor
         }
 
         /// <summary>
-        /// 条件查询
+        /// 条件查询 
         /// </summary>
         /// <typeparam name="TClass">T</typeparam>
         /// <param name="dbName">数据库</param>
         /// <param name="collectionName">集合</param>
-        /// <param name="filter"></param>
+        /// <param name="filter">不能是null，如果没有查询条件则使用var filter = new BsonDocument(); 有则使用 FilterDefinition<T> filter = Builders<T>.Filter.Eq("","");</param>
         /// <param name="sort"></param>
         /// <returns>List<TClass></returns>
-        public static List<TClass> FindData<TClass>(string dbName, string collectionName, FilterDefinition<TClass> filter, SortDefinition<TClass> sort = null)
+        public static List<TClass> FindData<TClass>(string dbName, string collectionName, int page, int pageSize, FilterDefinition<TClass> filter, SortDefinition<TClass> sort = null)
         {
             try
             {
                 ConfigureSettings(setting);
-                var client = new MongoClient(setting);
-
-                var database = client.GetDatabase(dbName);
-                var collection = database.GetCollection<TClass>(collectionName);
-
-                var result = collection.Find(filter).Sort(sort);
+                IMongoClient client = new MongoClient(setting);
+                IMongoDatabase database = client.GetDatabase(dbName);
+                IMongoCollection<TClass> collection = database.GetCollection<TClass>(collectionName);
+                IFindFluent<TClass, TClass> result = collection.Find(filter).Sort(sort).Skip((page - 1) * pageSize).Limit(pageSize);
                 var test = result.ToList();
-                return test;
-
+                return test; 
             }
             catch (Exception e)
             {
