@@ -82,11 +82,7 @@ namespace ConsoleTest
             #endregion
             Console.ReadKey();
         }
-        private static string getMicrosecond() { long _ticks = 0; QueryPerformanceCounter(ref _ticks); Random R = new Random(); return Convert.ToString(_ticks) + R.Next(0, 100); }
-        [DllImport("kernel32.dll")]
-        extern static short QueryPerformanceCounter(ref long x);
-        [DllImport("kernel32.dll")]
-        extern static short QueryPerformanceFrequency(ref long x);
+        
 
     }
 
