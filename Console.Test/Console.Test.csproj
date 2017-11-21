@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="autoMapperTest.cs" />
     <Compile Include="HotelProduct.cs" />
     <Compile Include="HotelProductEntity.cs" />
     <Compile Include="MongodbTest.cs" />
