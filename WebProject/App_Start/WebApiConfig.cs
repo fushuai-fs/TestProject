@@ -10,8 +10,7 @@ namespace WebProject
     {
         public static void Register(HttpConfiguration config)
         {
-            // 解决跨域方式之一
-            //跨域配置
+            // Microsoft.AspNet.WebApi.Cors 解决跨域方式之一 
             config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
             // Web API 配置和服务
