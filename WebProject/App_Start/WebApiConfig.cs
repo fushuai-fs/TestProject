@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace WebProject
 {
@@ -9,6 +10,10 @@ namespace WebProject
     {
         public static void Register(HttpConfiguration config)
         {
+            // 解决跨域方式之一
+            //跨域配置
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
             // Web API 配置和服务
 
             // Web API 路由
