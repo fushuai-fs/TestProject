@@ -17,7 +17,9 @@ namespace ConsoleTest
         {
             // MongodbTest.test();
             //  new autoMapperTest(); 
-             
+
+            AccessingObjectsAcrossAppDomainBoundaries.Marshalling();
+            AccessingObjectsAcrossAppDomainBoundaries.Marshalling2();
             AccessingObjectsAcrossAppDomainBoundaries.Marshalling3();
 
             Console.ReadKey();

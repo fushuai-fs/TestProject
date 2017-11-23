@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace ConsoleTest
             // demo1 使用按引用封装进行跨AppDomain通信
             Console.WriteLine("{0}Dome #1", Environment.NewLine);
             //新建一个AppDomain(从当前AppDomain继承安全性和配置)
-            ad2 = AppDomain.CreateDomain("AD #2", null, null);
+            ad2 = AppDomain.CreateDomain("AD #1", null, null);
             MarshalByRefType mbrt = null;// 定义 Marshal-by-reference
 
             mbrt = (MarshalByRefType)ad2.CreateInstanceAndUnwrap(exeAssembly, "ConsoleTest.MarshalByRefType");
@@ -78,7 +79,7 @@ namespace ConsoleTest
             // Demo 2 :使用按值封送（Marshal-by-Value）进行跨AppDomain通信
             Console.WriteLine("{0}Demo #2 ", Environment.NewLine);
             // 新建一个appDomain（从当前AppDomain继承安全性和配置）
-            ad2 = AppDomain.CreateDomain("AD #3", null, null);
+            ad2 = AppDomain.CreateDomain("AD #2", null, null);
             MarshalByRefType mbrt = null;// 定义 Marshal 
             mbrt = (MarshalByRefType)ad2.CreateInstanceAndUnwrap(exeAssembly, "ConsoleTest.MarshalByRefType");
             //对象的方法返回 对象的副本
@@ -129,15 +130,15 @@ namespace ConsoleTest
             MarshalByRefType mbrt = null;// 定义 Marshal 
             mbrt = (MarshalByRefType)ad2.CreateInstanceAndUnwrap(exeAssembly, "ConsoleTest.MarshalByRefType");
 
-            //对象的方法返回一个不可封送的对象：抛出异常
-            NonMarshalableType nmt = mbrt.MethodArgAndReturn(callingDomainName);
-            // 证明得到的是对一个代理对象的引用
-            Console.Write("证明得到的是对一个代理对象的引用 ");
-            Console.WriteLine("Is proxy={0} ", RemotingServices.IsTransparentProxy(mbrt));
 
 
             try
             {
+                //对象的方法返回一个不可封送的对象：抛出异常
+                NonMarshalableType nmt = mbrt.MethodArgAndReturn(callingDomainName);
+                // 证明得到的是对一个代理对象的引用
+                Console.Write("证明得到的是对一个代理对象的引用 ");
+                Console.WriteLine("Is proxy={0} ", RemotingServices.IsTransparentProxy(mbrt));
                 Console.WriteLine("Returned object created " + nmt.ToString());
                 Console.WriteLine("Successfull call. ");
             }
@@ -156,23 +157,25 @@ namespace ConsoleTest
     {
         public MarshalByRefType()
         {
-            Console.WriteLine("{0} ctor Running {1}", this.GetType().ToString(), Thread.GetDomain().FriendlyName);
+            Console.WriteLine("{0} ctor Running {1} CurrentDomain ={2}", this.GetType().ToString()
+                , Thread.GetDomain().FriendlyName, System.AppDomain.CurrentDomain);
+            
         }
 
         public void SomeMethod()
         {
-            Console.WriteLine("Executing SomeMethod " + Thread.GetDomain().FriendlyName);
+            Console.WriteLine("Executing SomeMethod " + Thread.GetDomain().FriendlyName + "System.AppDomain.CurrentDomain=" + System.AppDomain.CurrentDomain);
         }
         public MarshalByValType MethodWithReturn()
         {
-            Console.WriteLine("Executing in " + Thread.GetDomain().FriendlyName);
+            Console.WriteLine("Executing in " + Thread.GetDomain().FriendlyName+ "System.AppDomain.CurrentDomain="+ System.AppDomain.CurrentDomain);
             MarshalByValType t = new MarshalByValType();
             return t;
         }
         public NonMarshalableType MethodArgAndReturn(string callingDomainName)
         {
-            Console.WriteLine("Calling from {0} to {1}. ", callingDomainName
-                , Thread.GetDomain().FriendlyName);
+            Console.WriteLine("Calling from {0} to {1}. {2} ", callingDomainName
+                , Thread.GetDomain().FriendlyName, System.AppDomain.CurrentDomain);
             NonMarshalableType t = new NonMarshalableType();
             return t;
         }
@@ -185,9 +188,9 @@ namespace ConsoleTest
         private DateTime m_creationTime = DateTime.Now;
         public MarshalByValType()
         {
-            Console.WriteLine("{0} ctor running in {1}, Created on {2:D}",
+            Console.WriteLine("{0} ctor running in {1}, Created on {2:D} System.AppDomain.CurrentDomain={3}",
                 this.GetType().ToString(), Thread.GetDomain().FriendlyName,
-                m_creationTime);
+                m_creationTime, System.AppDomain.CurrentDomain);
         }
         public override string ToString()
         {
@@ -200,7 +203,7 @@ namespace ConsoleTest
     {
         public NonMarshalableType()
         {
-            Console.WriteLine("Executing in " + Thread.GetDomain().FriendlyName);
+            Console.WriteLine("Executing in " + Thread.GetDomain().FriendlyName+ "System.AppDomain.CurrentDomain="+ System.AppDomain.CurrentDomain);
         }
     }
 
