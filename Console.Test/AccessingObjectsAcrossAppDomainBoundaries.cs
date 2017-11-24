@@ -147,6 +147,7 @@ namespace ConsoleTest
                 Console.WriteLine("Failed call. " + ex.ToString());
             }
             // 卸载
+            // 一旦调用Unload，只有它返回之后，线程才能恢复运行  （阻塞！）
             AppDomain.Unload(ad2);
 
         }
@@ -179,7 +180,14 @@ namespace ConsoleTest
             NonMarshalableType t = new NonMarshalableType();
             return t;
         }
-
+        /// <summary>
+        /// 默认的5分钟和2分钟租约期设定修改在此处
+        /// </summary>
+        /// <returns></returns>
+        public override object InitializeLifetimeService()
+        {
+            return base.InitializeLifetimeService();
+        }
     }
     // 该类的实例可跨越appDomain的边界“按值封送”
     [Serializable]
