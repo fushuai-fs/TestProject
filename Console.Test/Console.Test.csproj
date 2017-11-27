@@ -72,6 +72,7 @@
     <Compile Include="MongodbTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectionD.cs" />
     <Compile Include="TComparer.cs" />
   </ItemGroup>
   <ItemGroup>
