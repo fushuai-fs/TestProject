@@ -8,6 +8,9 @@ using System.Threading;
 
 namespace UnitTest
 {
+    /*
+     * 温故而知新
+     */
     [TestClass]
     public class UnitTest1
     {
@@ -114,7 +117,27 @@ namespace UnitTest
 
         #endregion
 
-      
+        [TestMethod]
+        public void testEvent()
+        {
+        }
+        class MailManager
+        {
+            public event EventHandler<NewMailEventArgs> NewMail;
+        }
+        //定义事件类型
+        class NewMailEventArgs : EventArgs
+        {
+            readonly String _from, _to, _subject;
+
+            public NewMailEventArgs(String from ,String to,String subject)
+            {
+                _from = from;_to = to;_subject = subject;
+            }
+            public String From { get { return _from; } }
+            public String To { get { return _to; } }
+            public String Subject { get { return _subject; } }
+        }
     }
 
   
