@@ -26,9 +26,9 @@ namespace UnitTest
 
             objectGraph = (List<String>)DeserializeFromMemory(stream);
             foreach (var s in objectGraph)
-                Console.WriteLine(s); 
+                Console.WriteLine(s);
         }
-         
+
 
         static MemoryStream SerializableToMemory(Object objectGraph)
         {
@@ -49,7 +49,7 @@ namespace UnitTest
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Context = new System.Runtime.Serialization.StreamingContext(System.Runtime.Serialization.StreamingContextStates.Clone);
-                formatter.Serialize(stream,objectGraph);
+                formatter.Serialize(stream, objectGraph);
                 stream.Position = 0;
                 // 返回对象（深拷贝）的根
                 return formatter.Deserialize(stream);
@@ -117,28 +117,24 @@ namespace UnitTest
 
         #endregion
 
-        [TestMethod]
-        public void testEvent()
-        {
-        }
-        class MailManager
-        {
-            public event EventHandler<NewMailEventArgs> NewMail;
-        }
-        //定义事件类型
-        class NewMailEventArgs : EventArgs
-        {
-            readonly String _from, _to, _subject;
+      
+      
 
-            public NewMailEventArgs(String from ,String to,String subject)
-            {
-                _from = from;_to = to;_subject = subject;
-            }
-            public String From { get { return _from; } }
-            public String To { get { return _to; } }
-            public String Subject { get { return _subject; } }
-        }
     }
+     
 
-  
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
 }

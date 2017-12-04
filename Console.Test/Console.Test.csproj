@@ -67,6 +67,7 @@
     <Compile Include="AccessingObjectsAcrossAppDomainBoundaries.cs" />
     <Compile Include="AppDomainMonitorDelta.cs" />
     <Compile Include="autoMapperTest.cs" />
+    <Compile Include="EventsTest.cs" />
     <Compile Include="HotelProduct.cs" />
     <Compile Include="HotelProductEntity.cs" />
     <Compile Include="MongodbTest.cs" />
