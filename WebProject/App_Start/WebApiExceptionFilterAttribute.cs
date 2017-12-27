@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Filters;
 
-namespace WebProject.App_Start
+namespace WebProject
 {
     /// <summary>
     /// 异常处理
