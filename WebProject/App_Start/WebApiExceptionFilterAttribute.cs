@@ -33,16 +33,11 @@ namespace WebProject
             else if (actionExecutedContext.Exception is TimeoutException)
             {
                 actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.RequestTimeout);
-            }
-            else if (actionExecutedContext.Exception is DivideByZeroException)
+            } 
+            else if (actionExecutedContext.Exception is DivideByZeroException || actionExecutedContext.Exception is NotFiniteNumberException || actionExecutedContext.Exception is InvalidCastException ||actionExecutedContext.Exception is InvalidOperationException)
             {
                 actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.BadRequest);
-            }
-            else if (actionExecutedContext.Exception is NotFiniteNumberException)
-            {
-                actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.BadRequest);
-            }
-             
+            } 
             else
             {
                 actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.InternalServerError);

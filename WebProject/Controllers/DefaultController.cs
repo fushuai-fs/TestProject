@@ -41,9 +41,10 @@ namespace WebProject.Controllers
         [HttpPost]
         public IEnumerable<Product> Post([FromBody]Product product)
         {
+            int test = Convert.ToInt32(product);
             List<Product> list = new List<Models.Product>();
             list.Add(product);
-            product.Id = product.Id++;
+            product.Id = (product.Id++);
             list.Add(product);
             return list;
                 
