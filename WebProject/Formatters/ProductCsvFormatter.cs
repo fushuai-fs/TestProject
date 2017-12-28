@@ -15,6 +15,7 @@ using WebProject.Models;
 
 namespace WebProject.Formatters
 {
+    //http://www.intstrings.com/ramivemula/articles/simple-custom-media-formatter-in-asp-net-web-api/
     public class ProductCsvFormatter : BufferedMediaTypeFormatter
     {
         public ProductCsvFormatter()
