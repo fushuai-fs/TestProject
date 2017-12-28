@@ -38,16 +38,46 @@ namespace WebProject.Controllers
             }
             return Ok(product);
         }
+        /// <summary>
+        /// 从请求body里读取参数
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         [HttpPost]
         public IEnumerable<Product> Post([FromBody]Product product)
         {
-          //  int test = Convert.ToInt32(product); 异常测试
+            //  int test = Convert.ToInt32(product); 异常测试
             List<Product> list = new List<Models.Product>();
             list.Add(product);
             product.Id = (product.Id++);
             list.Add(product);
             return list;
-                
+
+        }
+        /// <summary>
+        /// 从URI读取 http://localhost:50276/api/Default/gets?Id=2&Name=fus&Category=chi&Price=100
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public IEnumerable<Product> gets([FromUri]Product product)
+        {
+            //  int test = Convert.ToInt32(product); 异常测试
+            List<Product> list = new List<Models.Product>();
+            list.Add(product);
+            product.Id = (product.Id++);
+            list.Add(product);
+            return list;
+
+        }
+        public IEnumerable<Product> posts([FromUri]Product product)
+        {
+            //  int test = Convert.ToInt32(product); 异常测试
+            List<Product> list = new List<Models.Product>();
+            list.Add(product);
+            product.Id = (product.Id++);
+            list.Add(product);
+            return list;
+
         }
 
         public HttpResponseMessage Get()
@@ -71,5 +101,31 @@ namespace WebProject.Controllers
             return response;
         }
 
+
+        // Request：
+        // http：// localhost：9445 / api / MediaFormatters 
+        // Accept：text / csv 
+
+        // Response    
+        // 1，BMW，Race，99999999 
+        public HttpResponseMessage GetCvs()
+        {
+            var product = new Product { Id = 1, Name = "BMW", Category = "Race", Price = 99999999 };
+            var response = Request.CreateResponse(HttpStatusCode.OK, product);
+            return response;
+        }
+
+        [HttpPost]
+        public HttpResponseMessage PostCvs(List<Product> p)
+        {
+            if (p == null)
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+
+            List<Product> _products = new List<Models.Product>();
+            _products.AddRange(p);
+            _products.AddRange(p);
+
+            return Request.CreateResponse(HttpStatusCode.Created, _products);
+        }
     }
 }

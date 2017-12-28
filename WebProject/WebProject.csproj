@@ -119,6 +119,7 @@
     <Compile Include="App_Start\WebApiExceptionFilterAttribute.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
+    <Compile Include="Formatters\ProductCsvFormatter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
