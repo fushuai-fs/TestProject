@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WebProject.Formatters;
@@ -27,6 +29,17 @@ namespace WebProject
 
             config.Filters.Add(new WebApiExceptionFilterAttribute());
             config.Formatters.Add(new ProductCsvFormatter());
+
+            // Remove the JSON formatter
+            //config.Formatters.Remove(config.Formatters.JsonFormatter);
+
+
+            // Remove the XML formatter
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            //启用bjson
+            var bson = new BsonMediaTypeFormatter();
+            bson.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/vnd.contoso"));
+            config.Formatters.Add(bson);
         }
     }
 }
