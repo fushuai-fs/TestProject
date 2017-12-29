@@ -5,6 +5,8 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Routing;
+using WebProject.App_Start;
 using WebProject.Formatters;
 
 namespace WebProject
@@ -19,13 +21,24 @@ namespace WebProject
             // Web API 配置和服务
 
             // Web API 路由
-            config.MapHttpAttributeRoutes();
+            //config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{action}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
+            RouteTable.Routes.MapHttpRoute(
+          name: "DefaultApi",
+          routeTemplate: "api/{controller}/{action}/{id}",
+          defaults: new { id = RouteParameter.Optional }
+          );
+            // session 
+            //RouteTable.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //    ).RouteHandler = new SessionControllerRouteHandler();
 
             config.Filters.Add(new WebApiExceptionFilterAttribute());
             config.Formatters.Add(new ProductCsvFormatter());
