@@ -127,5 +127,42 @@ namespace WebProject.Controllers
 
             return Request.CreateResponse(HttpStatusCode.Created, _products);
         }
+
+        public IHttpActionResult ProductByID(int id)
+        {
+            var product = products.FirstOrDefault((p) => p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
+        public HttpResponseMessage GetProduct(int id)
+        {
+            Product item = products.FirstOrDefault((p) => p.Id == id);
+            if (item == null)
+            {
+                var message = string.Format("Product with id = {0} not found", id);
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, item);
+            }
+        }
+        public HttpResponseMessage GetProduct1(int id)
+        {
+            Product item = products.FirstOrDefault((p) => p.Id == id);
+            if (item == null)
+            {
+                var message = string.Format("Product with id = {0} not found", id);
+                return Request.CreateResponse(HttpStatusCode.NotFound, message);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, item);
+            }
+        }
     }
 }

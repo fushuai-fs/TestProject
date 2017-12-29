@@ -1,6 +1,10 @@
 # TestProject
   DataAccessor.MongoDBHelper
  2017年11月20日 16:56:13 AutoMapper 使用测试<br/>
+ 
+ 2017-12-27 09:09:02<br/>
+ WebApiExceptionFilterAttribute 异常处理
+
      2017年12月28日 14:06:04 <br/>
 	WebProject.Formatters BufferedMediaTypeFormatter 实现
 		[参照1](https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/media-formatters)
