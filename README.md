@@ -23,3 +23,9 @@
             1,BMW,Race,111<br/>
 			1,BMW,Race,222<br/>
 			1,BMW,Race,333 <br/><br/>
+
+	 // session <br/>
+            //RouteTable.Routes.MapHttpRoute(name: "DefaultApi",               <br/>
+			 routeTemplate: "api/{controller}/{id}",                           <br/>
+			  defaults: new { id = RouteParameter.Optional }                   <br/>
+              ).RouteHandler = new SessionControllerRouteHandler();            <br/><br/>
