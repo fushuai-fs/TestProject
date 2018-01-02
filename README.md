@@ -5,27 +5,30 @@
  2017-12-27 09:09:02<br/>
  WebApiExceptionFilterAttribute 异常处理
 
-     2017年12月28日 14:06:04 <br/>
+     2017年12月28日 14:06:04   
 	WebProject.Formatters BufferedMediaTypeFormatter 实现
 		[参照1](https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/media-formatters)
 		[参照1](http://www.intstrings.com/ramivemula/articles/simple-custom-media-formatter-in-asp-net-web-api/)
 	 <br/><br/>
 	    // Request<br/>
-        // http://localhost:50276/api/Default/GetCvs<br/>
+        // http://localhost:50276/api/Default/GetCvs 
         // Accept:text/csv  <br/>
         // Response    <br/>
-        // 1,BMW,Race,99999999 <br/><br/>
-		// Request<br/>
-        // http://localhost:50276/api/Default/PostCvs<br/>
+        // 1,BMW,Race,99999999 
+	
+	
+	 // Request 
+        // http://localhost:50276/api/Default/PostCvs 
         // Accept:text/csv  <br/>
-		// body:[{1,BMW,Race,111}{1,BMW,Race,222}{1,BMW,Race,333}]<br/>
-        // Response    <br/>
-            1,BMW,Race,111<br/>
-			1,BMW,Race,222<br/>
-			1,BMW,Race,333 <br/><br/>
+		// body:[{1,BMW,Race,111}{1,BMW,Race,222}{1,BMW,Race,333}] 
+        // Response     
+            1,BMW,Race,111 
+			1,BMW,Race,222 
+			1,BMW,Race,333 
+			
 
-	 // session <br/>
-            //RouteTable.Routes.MapHttpRoute(name: "DefaultApi",               <br/>
-			 routeTemplate: "api/{controller}/{id}",                           <br/>
-			  defaults: new { id = RouteParameter.Optional }                   <br/>
-              ).RouteHandler = new SessionControllerRouteHandler();            <br/><br/>
+	 // session  
+            //RouteTable.Routes.MapHttpRoute(name: "DefaultApi",                
+			 routeTemplate: "api/{controller}/{id}",                          
+			  defaults: new { id = RouteParameter.Optional }                 
+              ).RouteHandler = new SessionControllerRouteHandler();            
