@@ -12,8 +12,8 @@
 
      2017年12月28日 14:06:04   
 	WebProject.Formatters BufferedMediaTypeFormatter 实现
-		[参照1](https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/media-formatters)
-		[参照1](http://www.intstrings.com/ramivemula/articles/simple-custom-media-formatter-in-asp-net-web-api/)
+	[参照1](https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/media-formatters)
+	[参照1](http://www.intstrings.com/ramivemula/articles/simple-custom-media-formatter-in-asp-net-web-api/)
 	 
 	    // Request 
         // http://localhost:50276/api/Default/GetCvs 
