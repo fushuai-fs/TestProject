@@ -123,6 +123,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\WebApiExceptionFilterAttribute.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Formatters\ProductCsvFormatter.cs" />
     <Compile Include="Global.asax.cs">
@@ -134,6 +135,7 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\webproject.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,13 +147,17 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{0c12cef3-66bf-4d9c-b061-3db38a5b3aff}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{021b47b8-b727-43e0-ad74-b214e0b83e1e}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccessor\DataAccessor.csproj">
-      <Project>{382c02c1-31b7-4bc1-982d-f1ae6acb87bd}</Project>
-      <Name>DataAccessor</Name>
+    <ProjectReference Include="..\entity\Entity.csproj">
+      <Project>{6a9223cf-64b6-454e-b95d-852a82091e02}</Project>
+      <Name>Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
