@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
@@ -15,24 +16,38 @@ namespace WebProject
     {
         public void ConfigreOAuth(IAppBuilder app)
         {
+            //var OAuthOptions = new OAuthAuthorizationServerOptions
+            //{
+            //    AllowInsecureHttp = true,
+            //    TokenEndpointPath = new PathString("/token"),
+            //    AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+            //    Provider = new Providers.SimpleAuthorizationServerProvider(),
+            //};
+            //app.UseOAuthBearerTokens(OAuthOptions);
+
             var oauthServerOptions = new OAuthAuthorizationServerOptions
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new Providers.SimpleAuthorizationServerProvider()
+                AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(100),// TimeSpan.FromDays(1),
+                Provider = new Providers.SimpleAuthorizationServerProvider(),
+                //refresh token provider
+               // RefreshTokenProvider = new Providers.SimpleRefreshTokenProvider(),
+                AuthenticationMode = AuthenticationMode.Active
             };
-
             app.UseOAuthAuthorizationServer(oauthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
         public void Configuration(IAppBuilder app)
         {
-            ConfigreOAuth(app);
-               var config = new HttpConfiguration();
+            var config = new HttpConfiguration();
             WebApiConfig.Register(config);
             //添加这行
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            //添加的配置
+            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+
+            ConfigreOAuth(app);
             app.UseWebApi(config);
 
 
@@ -43,8 +58,7 @@ namespace WebProject
 
             //要编写缩进的JSON
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
-
+            json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented; 
 
             //处理循环引用，要在JSON中保留对象引用
             /***例如********/

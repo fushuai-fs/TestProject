@@ -15,6 +15,7 @@ namespace WebProject.Controllers
 {
     public class PositionController : ApiController
     {
+        [Authorize]
         // GET: api/Position
         public IEnumerable<string> Get()
         {

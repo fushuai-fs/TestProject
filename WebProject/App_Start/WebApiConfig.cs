@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
@@ -53,6 +54,10 @@ namespace WebProject
             var bson = new BsonMediaTypeFormatter();
             bson.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/vnd.contoso"));
             config.Formatters.Add(bson);
+
+
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }
