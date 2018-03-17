@@ -117,8 +117,13 @@ namespace UnitTest
 
         #endregion
 
-      
-      
+
+
+        [TestMethod]
+        public void hotellog()
+        {
+            Business.TestMongo.log();
+        }
 
     }
      

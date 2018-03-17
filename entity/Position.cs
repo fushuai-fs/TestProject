@@ -19,7 +19,7 @@ namespace Entity
         public string Latitude { get; set; }
         public string Mark { get; set; }
         private DateTime? _date;
-        public DateTime? date { set { date = value; } get { return _date; } }
+        public DateTime? date { set { _date = value; } get { return _date; } }
 
         /// <summary>
         /// 高德经度
