@@ -169,7 +169,18 @@ namespace Common
                     return "";
             }
         }
-
+        /// <summary>  
+        /// 解码BASE64  
+        /// </summary>  
+        /// <param name="text"></param>  
+        /// <param name="encoding"></param>  
+        /// <returns></returns>  
+        public string DecodeBase64(string text, System.Text.Encoding encoding)
+        {
+            if (text.Trim().Length == 0) return "";
+            byte[] _ValueBytes = Convert.FromBase64String(text);
+            return encoding.GetString(_ValueBytes);
+        }
 
         /// <summary>
         /// 写日志
