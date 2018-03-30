@@ -1,64 +1,29 @@
 
-var obj=[{
-    "name":"酒店名称1",
-    "room":[{
-        "name":"物理房型名称1",
-        "sellroom":[{
-            "name":"房型名称1",
-            "cancel":"不可取消",
-        },{
-            "name":"房型名称2",
-            "cancel":"不可取消",
-        },{
-            "name":"房型名称3",
-            "cancel":"不可取消",
-        }]
-    },{
-        "name":"物理房型名称2",
-        "sellroom":[{
-            "name":"房型名称1",
-            "cancel":"不可取消",
-        },{
-            "name":"房型名称2",
-            "cancel":"不可取消",
-        } ]
-    }]
-},{
-    "name":"酒店名称2",
-    "room":[{
-        "name":"物理房型名称1",
-        "sellroom":[{
-            "name":"房型名称1",
-            "cancel":"不可取消",
-        },{
-            "name":"房型名称2",
-            "cancel":"不可取消",
-        },{
-            "name":"房型名称3",
-            "cancel":"不可取消",
-        }]
-    },{
-        "name":"物理房型名称2",
-        "sellroom":[{
-            "name":"房型名称1",
-            "cancel":"不可取消",
-        },{
-            "name":"房型名称2",
-            "cancel":"不可取消",
-        } ]
-    }]
-}];
+;(function($,window,document,undefined){
+    var myplugin=function (element,options) {
+        this.$element=element;
+        this.defaults={
+            'color': 'red',
+            'fontSize': '12px',
+            'textDecoration':'none'
+        },
+            this.options=$.extend({}, this.defaults, options)
+    };
+    myplugin.prototype={
+        testMethods:function () {
+            return this.$element.css({
+                'color': this.options.color,
+                'fontSize': this.options.fontSize,
+                'textDecoration': this.options.textDecoration
+            });
+        },
+        test2:function () {
+            alert('test2');
+        }
+    }
+    $.fn.myPlugin= function (options) {
+        var myp = new myplugin(this,options);
+        return myp.testMethods();
 
-/* <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-* */
-var htmlstr="";
-$.each(obj,function () {
-    htmlstr+='<tr>';
-    htmlstr+='<td>';
-    htmlstr+' </tr>';
-});
+    }
+})(jQuery,window,document);

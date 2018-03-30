@@ -70,6 +70,7 @@
     <Compile Include="EventsTest.cs" />
     <Compile Include="HotelProduct.cs" />
     <Compile Include="HotelProductEntity.cs" />
+    <Compile Include="listJoinTest.cs" />
     <Compile Include="MongodbTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
