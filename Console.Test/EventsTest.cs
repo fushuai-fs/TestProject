@@ -8,7 +8,7 @@ namespace ConsoleTest
 {
     class EventsTest
     {
-        static void Main(string[] args)
+        static void Main111(string[] args)
         {
             EventTest e = new EventTest(); /* 实例化对象,第一次没有触发事件 */
             subscribEvent v = new subscribEvent(); /* 实例化对象 */

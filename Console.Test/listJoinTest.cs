@@ -58,6 +58,9 @@ namespace ConsoleTest
 
         public static void Main()
         {
+            ///declare @s nvarchar(200);
+            ///set @s = N'Mövenpick Hotel Sukhumvit 15 Bangkok';
+            ///select UniCode(@s), CHAr(UniCode(@s)), @s;
             #region MyRegion
             List<Customer> custList = new List<Customer>();
             Customer customer = new Customer();
@@ -85,6 +88,9 @@ namespace ConsoleTest
             carList.Add(car);
             car = new Car();
             car.custID = 1; car.carID = 5; car.carCode = "京54321";
+            carList.Add(car);
+            car = new Car();
+            car.custID = 4; car.carID = 5; car.carCode = "京54321";
             carList.Add(car);
             #endregion
 
